@@ -1,8 +1,10 @@
 import React from 'react';
 import {Provider} from "react-redux";
 import store from "./redux/store";
+import './App.scss';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {StarshipsContainer} from "./components/StarshipsList/StarshipsContainer";
+
 
 function App() {
   return (

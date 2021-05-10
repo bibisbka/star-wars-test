@@ -1,6 +1,6 @@
 import React from 'react'
 import {InitialStateResultType} from "../../types/types";
-import {Card, CardBody, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import styles from './starship.module.css'
 
 export const Starship: React.FC<InitialStateResultType> = ({
                                                              name,
@@ -11,27 +11,23 @@ export const Starship: React.FC<InitialStateResultType> = ({
                                                              hyperdrive_rating
                                                            }) => {
   return (
-    <div>
-      <Card body outline color='danger'>
-        <CardTitle>
-          {name}
-        </CardTitle>
-        <CardSubtitle>
-          {model}
-        </CardSubtitle>
-        <CardText>
-          STARSHIP CLASS: {starship_class}
-        </CardText>
-        <CardText>
-          HYPERDRIVE RATING: {hyperdrive_rating}
-        </CardText>
-        <CardText>
-          PASSENGERS: {passengers}
-        </CardText>
-        <CardText>
-          MANUFACTURER: {manufacturer}
-        </CardText>
-      </Card>
+    <div className={styles.card}>
+      <h3>
+        {name}
+      </h3>
+      <h6>
+        {model}
+      </h6>
+      <div>STARSHIP CLASS:</div>
+      <div className={styles.text}>{starship_class}</div>
+      <div>HYPERDRIVE RATING:</div>
+      <div className={styles.text}>{hyperdrive_rating}</div>
+      <div>PASSENGERS:</div>
+      <div className={styles.text}>{passengers}</div>
+      <div>MANUFACTURER:</div>
+      <div className={styles.text}>{manufacturer}</div>
     </div>
   )
 }
+
+

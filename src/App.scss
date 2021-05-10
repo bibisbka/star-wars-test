@@ -1,0 +1,10 @@
+$grid-gutter-width: 0;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+@import "~bootstrap/scss/bootstrap-grid.scss";

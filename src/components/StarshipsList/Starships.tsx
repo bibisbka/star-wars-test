@@ -4,7 +4,10 @@ import {Starship} from "./Starship";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, AppState} from "../../redux/store";
 import {getStarships, setNewPage} from '../../redux/slice';
-import {Pagination, PaginationItem, PaginationLink} from "reactstrap";
+import {Pagination, PaginationLink} from "reactstrap";
+import {Col, Container, Row} from "react-bootstrap";
+import styles from './starship.module.css'
+
 
 export const Starships: React.FC = () => {
   const {
@@ -25,28 +28,39 @@ export const Starships: React.FC = () => {
     dispatch(setNewPage(page + 1))
   }
   return (
-    <>
+    <div>
       {loading ? (
         <div> loading... </div>
-      ) : (
-        <div>
-          {results.map(s => <Starship hyperdrive_rating={s.hyperdrive_rating}
-                                      manufacturer={s.manufacturer}
-                                      model={s.model}
-                                      name={s.name}
-                                      passengers={s.passengers}
-                                      starship_class={s.starship_class}
-                                      key={s.name}/>)}
-          ---------------
+      ) : (<>
+        <Container fluid className={styles.container}>
+          <Row className={styles.row}>
+            {results.map(s =>
+              <Col lg={3} md={4} xs={6} className={styles.col}>
+                <Starship name={s.name}
+                          model={s.model}
+                          starship_class={s.starship_class}
+                          hyperdrive_rating={s.hyperdrive_rating}
+                          passengers={s.passengers}
+                          manufacturer={s.manufacturer}/>
+              </Col>
+            )}
+          </Row>
+        </Container>
+        <Container fluid className={styles.container}>
           <Pagination>
-            {previous?<PaginationItem>
-              <PaginationLink previous onClick={handlePreviousButton}/>
-            </PaginationItem>:null}
-            {next?<PaginationItem>
-              <PaginationLink next onClick={handleNextButton}/>
-            </PaginationItem>:null}
+            <Row>
+              {previous ?
+                <Col className="col-8">
+                  <PaginationLink previous onClick={handlePreviousButton}/>
+                </Col> : null}
+              {next ?
+                <Col className="col-4">
+                  <PaginationLink next onClick={handleNextButton}/>
+                </Col> : null}
+            </Row>
           </Pagination>
-        </div>)}
-    </>
+        </Container>
+      </>)}
+    </div>
   )
 }
